@@ -1,7 +1,7 @@
-const FreeLancer = require('../../models/freelancers')
+const Freelancer = require('../../models/Freelancers')
 
 exports.create = ({ username, email, contact_number, skillsets, hobby }) => {
-  return FreeLancer.query().insert({
+  return Freelancer.query().insert({
     username,
     email,
     contact_number,
@@ -11,7 +11,7 @@ exports.create = ({ username, email, contact_number, skillsets, hobby }) => {
 }
 
 exports.getAll = ({ number, size, email }) => {
-  let result = FreeLancer.query()
+  let result = Freelancer.query()
     .whereNull('deleted_at');
 
   email && result.where('email', 'like', `${email}%`);
@@ -21,18 +21,18 @@ exports.getAll = ({ number, size, email }) => {
 };
 
 exports.getByID = (id) => {
-  return FreeLancer.query().findById(id).whereNull('deleted_at');
+  return Freelancer.query().findById(id).whereNull('deleted_at');
 };
 
 exports.delete = async id => {
-  const freeLancer = await FreeLancer.query().whereNull('deleted_at').findById(id);
-  return FreeLancer.query().whereNull('deleted_at').findById(id).patch({
-    name: `${freeLancer.name}-deleted`,
+  const freelancer = await Freelancer.query().whereNull('deleted_at').findById(id);
+  return Freelancer.query().whereNull('deleted_at').patchAndFetchById(id, {
+    username: `${freelancer.username}-deleted`,
     deleted_at: new Date()
   });
 };
 
 exports.update = (id, attr = {}) => {
-  return FreeLancer.query().whereNull('deleted_at')
+  return Freelancer.query().whereNull('deleted_at')
     .patchAndFetchById(id, attr);
 };
