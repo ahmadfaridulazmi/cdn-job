@@ -5,8 +5,8 @@ exports.up = function (knex) {
     table.string('username').notNullable().index();
     table.string('email').notNullable().index().unique();
     table.integer('contact_number').notNullable();
-    table.jsonb('skillsets');
-    table.jsonb('hobby');
+    table.string('skillsets');
+    table.string('hobby');
     table.timestamp('created_at');
     table.timestamp('deleted_at');
     table.timestamp('updated_at');

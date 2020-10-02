@@ -9,8 +9,8 @@ exports.create = {
       username: joi.string().max(150).required(),
       email: joi.string().email().required(),
       contact_number: joi.number().required(),
-      skillsets: joi.object().optional(),
-      hobby: joi.object().optional()
+      skillsets: joi.string().optional(),
+      hobby: joi.string().optional()
     });
   }
 };
@@ -44,8 +44,8 @@ exports.update = {
       username: joi.string().max(150).optional(),
       email: joi.string().email().optional(),
       contact_number: joi.number().optional(),
-      skillsets: joi.object().optional(),
-      hobby: joi.object().optional()
+      skillsets: joi.string().optional(),
+      hobby: joi.string().optional()
     });
   }
 };
