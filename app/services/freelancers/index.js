@@ -27,7 +27,7 @@ exports.getByID = (id) => {
 exports.delete = async id => {
   const freelancer = await Freelancer.query().whereNull('deleted_at').findById(id);
   return Freelancer.query().whereNull('deleted_at').patchAndFetchById(id, {
-    username: `${freelancer.username}-deleted`,
+    email: `${freelancer.email}-deleted`,
     deleted_at: new Date()
   });
 };
