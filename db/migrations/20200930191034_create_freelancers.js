@@ -4,7 +4,7 @@ exports.up = function (knex) {
     table.increments('id').primary();
     table.string('username').notNullable().index();
     table.string('email').notNullable().index().unique();
-    table.integer('contact_number').notNullable();
+    table.bigInteger('contact_number').notNullable();
     table.string('skillsets');
     table.string('hobby');
     table.timestamp('created_at');
