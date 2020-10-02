@@ -1,4 +1,4 @@
-const Freelancer = require('../../models/Freelancers')
+const Freelancer = require('../../models/freelancers')
 
 exports.create = ({ username, email, contact_number, skillsets, hobby }) => {
   return Freelancer.query().insert({
